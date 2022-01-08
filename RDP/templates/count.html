@@ -1,0 +1,50 @@
+{% extends 'index/index.html' %}
+{% block content %}
+<div class="d-flex flex" id="content-body">
+    <div class="d-flex flex-column flex card">
+        <div class="padding">
+            <div class="row ">
+                <div class="p-4">
+                    <h4 style="font-weight: 700;">List transaction</h4>
+                </div>
+                <div class="p-4">
+                    <h4 style="font-weight: 700;">Count:  <b>{{count.count}}</b></h4>
+                </div>
+                <table id="table" class="table" data-mobile-responsive="true"
+                    style="text-align: center;margin-top: 9px;">
+                    <thead>
+                        <tr>
+                            <th data-sortable="true" data-field="stt" style="width: 7cm;">Code User</th>
+                            <th data-sortable="true" data-field="stt" style="width: 7cm;">Code Product</th>
+                            <th data-sortable="true" data-field="task" style="width: 7cm;">Task</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in count %}
+                        <tr class=" " data-id="5">
+                            <td style="min-width:20px;">
+                                <small class="text-muted">{{ i.user }}</small>
+                            </td>
+                            <td style="min-width:20px;">
+                                <small class="text-muted">{{ i.product }}</small>
+                            </td>
+                            <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="{% url 'success' i.id %}">
+                                        <button class="btn btn-primary account-btn" type="submit">Accept</button>
+                                        </a>
+                                        <a href="{% url 'cancel' i.id %}">
+                                        <button class="btn account-btn" type="submit">Cancel</button>
+                                        </a>
+                                    </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

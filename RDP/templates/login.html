@@ -1,0 +1,321 @@
+{% load static %}
+<!DOCTYPE html>
+		<html lang="en">
+			<head>
+				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+				<meta charset="utf-8">
+				<title>SignIn</title>
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" type="text/css" href="{% static 'default.css' %}">
+			</head>
+		<body style="" oncontextmenu="return false;">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<nav class="navbar navbar-default" role="navigation">
+								<div class="navbar-header">
+									<a class="navbar-brand unselectable" href="#" >Market</a>
+              <div style="margin-left:10%;" class="navbar-toggle navbar-nav nav navbar-right" data-toggle="collapse">
+                   <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign Up <b class="caret"></b></a>
+                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form" role="form" method="POST" action="" accept-charset="UTF-8" autocomplete="off" >
+                                                     {% csrf_token %}
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputEmail2">Username</label>
+                                       <input type="text" name="username1" class="form-control" id="exampleInputEmail2" placeholder="Username" autocomplete="off" required="">
+                                    </div>
+									 <div class="form-group">
+                                       <input type="password" name="password1"  class="form-control"  placeholder="Password" autocomplete="off" required="">
+                                    </div>
+									 <div class="form-group">
+                                      <input type="password" name="password11"  class="form-control"  placeholder="Confirm Password" required="">
+                                    </div>
+									 <div class="form-group">
+                                       <input type="email" name="email"  class="form-control"  placeholder="Jabber address" required="">
+                                    </div>
+                                    <div class="form-group">
+                                       <button type="submit" name="submit" value="Signup" class="btn btn-success btn-block">Sign Up</button>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+
+                     </ul>
+                  </li>
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form" method="POST" name="signin" action="" accept-charset="UTF-8">
+                                                     {% csrf_token %}
+
+                                    <div class="form-group">
+                                      <input type="username" name="username2" class="form-control" id="username" placeholder="Username" autocomplete="off" required="">
+                                    </div>
+                                    <div class="form-group">
+                                       <input type="password" name="password2" class="form-control" id="password" placeholder="Password" autocomplete="off" required="">
+                                    </div>
+                                    <div class="checkbox">
+                                       <label>
+                                       <input type="checkbox"> Remember me
+                                       </label>
+                                    </div>
+                                    <div class="form-group">
+                                       <input type="submit"  name="submit" id="signme" class="btn btn-success btn-block" value="Signin" />
+                                    </div>
+									<span id="signresult" style="text-align: center;display: block;">
+									</span>
+                                 </form>
+                              </div>
+                           </div>
+                     </ul>
+                  </li>
+               </div>
+								</div>
+									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+										<ul class="nav navbar-nav">
+											<li class="active"><a href="#">Home</a></li>
+										</ul>
+										<style>
+											.navbar-right li:hover>ul { display: block; }
+    h2 {margin-top:0}
+
+/* Styling applied to classes only */
+
+/*  Pop-up content shifted off-screen when not in view.
+    Still readable by screen-reader software.
+    When targeted it fills the browser window.
+*/
+    .pop-up {position:absolute; top:0; left:-500em;}
+    .pop-up:target {position:static; left:0;}
+
+
+/* The pop-up itself */
+    .popBox {
+      background:#ffffff;
+
+    /* alternatively fixed width / height and negative margins from 50% */
+      position:absolute; left:30%; right:30%; top:30%; bottom:30%;
+
+      z-index:10;
+      /* padding:1%; removed 17/07/2012 */
+      border:1px solid #3a3a3a;
+
+    /* CSS3 where available: rounded corners, drop-shadow, and fade in. */
+      -moz-border-radius:12px;
+      border-radius:12px;
+      -webkit-box-shadow:2px 2px 4px #3a3a3a;
+      -moz-box-shadow:2px 2px 4px #3a3a3a;
+      box-shadow:2px 2px 4px #3a3a3a;
+      opacity:0;
+      -webkit-transition: opacity 0.5s ease-in-out;
+      -moz-transition: opacity 0.5s ease-in-out;
+      -o-transition: opacity 0.5s ease-in-out;
+      -ms-transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    :target .popBox {position:fixed; opacity:1;}
+
+/* Light box properties */
+    .lightbox {display:none; text-indent:-200em; background:#000; opacity:0.4; width:100%; height:100%; position:fixed; top:0; left:0; bottom:0; right:0; z-index:5;}
+    :target .lightbox {display:block;}
+    .lightbox:hover {background:#000;}
+
+/* The pop-ups close link, moved via CSS to the top right of the pop-up */
+    .close:link,
+    .close:visited {
+      position:absolute; top:-0.75em; right:-0.75em; display:block; width:1em; height:1em;
+      padding:0;
+      font:bold large/1 arial, sans-serif; text-align:center; text-decoration:none;
+      background:#000; border:3px solid #fff; color:#fff;
+      -moz-border-radius: 1em;
+      -webkit-border-radius: 1em;
+      border-radius: 1em;
+      -moz-box-shadow: 0 0 1px 1px #3a3a3a;
+      -webkit-box-shadow: 0 0 1px 1px #3a3a3a;
+      box-shadow: 0 0 1px 1px #3a3a3a;
+    }
+    .close:before {content:"X";}
+    .close:hover,
+    .close:active,
+    .close:focus {box-shadow:0 0 1px 1px #c00; background:#c00; color:#fff;}
+    .close span {text-indent:-200em; display:block;}
+
+/* The pop-up content div will scroll if it has too much content */
+    /* .popScroll {max-height:99%; overflow:hidden; overflow-y:scroll;} removed 17/07/2012 */
+    .popScroll {position:absolute; top:9%; left:3%; right:3%; bottom:9%; overflow-y:auto; *overflow-y:scroll; padding-right:0.5em}
+
+	.navbar-right li:hover>a>b { -webkit-transform: rotate(180deg); }
+									    </style>
+               <div class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign Up <b class="caret"></b></a>
+                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form" role="form" method="POST" action="" accept-charset="UTF-8" autocomplete="off" >
+                                                     {% csrf_token %}
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputEmail2">Username</label>
+                                       <input type="text" name="username1" class="form-control" id="exampleInputEmail2" placeholder="Username" autocomplete="off" required="">
+                                    </div>
+									 <div class="form-group">
+                                       <input type="password" name="password1"  class="form-control"  placeholder="Password" autocomplete="off" required="">
+                                    </div>
+									 <div class="form-group">
+                                      <input type="password" name="password11"  class="form-control"  placeholder="Confirm Password" required="">
+                                    </div>
+									 <div class="form-group">
+                                       <input type="email" name="email"  class="form-control"  placeholder="Jabber address" required="">
+                                    </div>
+                                    <div class="form-group">
+                                       <button type="submit" name="submit" value="Signup" class="btn btn-success btn-block">Sign Up</button>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                      
+                     </ul>
+                  </li>
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form" method="POST" name="signin" action="" accept-charset="UTF-8">
+                                                     {% csrf_token %}
+
+                                    <div class="form-group">
+                                      <input type="username" name="username2" class="form-control" id="username" placeholder="Username" autocomplete="off" required="">
+                                    </div>
+                                    <div class="form-group">
+                                       <input type="password" name="password2" class="form-control" id="password" placeholder="Password" autocomplete="off" required="">
+                                    </div>
+                                    <div class="checkbox">
+                                       <label>
+                                       <input type="checkbox"> Remember me
+                                       </label>
+                                    </div>
+                                    <div class="form-group">
+                                       <input type="submit"  name="submit" id="signme" class="btn btn-success btn-block" value="Signin" />
+                                    </div>
+									<span id="signresult" style="text-align: center;display: block;">
+									</span>
+                                 </form>
+                              </div>
+                           </div>
+                     </ul>
+                  </li>
+			   </div>
+            </div>
+         </nav>
+      </div>
+   </div>
+</div>	
+
+
+
+
+
+    <div class="container" style="margin: 0 auto;max-width: 1000px;">
+
+      
+      <div style="margin: 10px 0;text-align: center;">
+        <h1 style="font-size: 100px;line-height: 1;" class="unselectable">Market</h1>
+        <p class="lead" style="font-size: 24px;line-height: 1.25;">Litecoin's accepted here<br /> Low prices!</p>
+        <a class="btn btn-large btn-success" style=" font-size: 21px; padding: 14px 24px;" onclick="getElementById('messages').className='modal show';" href="#">[View product]</a>
+      </div>
+
+      <hr style="margin: 20px 0;">
+
+      <!-- Example row of columns -->
+      <div class="row-fluid" style="width: 100%;">
+        <div class="span4" style="width: 31.623931623931625%;float: left;min-height: 30px;display: block;margin-left: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">
+          <h2>Customer</h2>
+          <p>Find your rdps and just enjoy money</p>
+        </div>
+         <div class="span4" style="width: 31.623931623931625%;float: left;min-height: 30px;display: block;margin-left: 2.564102564102564%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">
+         <h2>Vendors</h2>
+          <p>100% legit vendor will give you best services</p>
+       </div>
+        <div class="span4" style="width: 31.623931623931625%;float: left;min-height: 30px;display: block;margin-left: 2.564102564102564%;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;">
+          <h2>Security and Funds</h2>
+          <p>24/7 manually check</p>
+        </div>
+      </div>
+      
+          <hr style="margin: 20px 0;width:100%">
+      <div class="footer">
+        <p><a href="#terms">Terms Of Service</a> | 
+		<a href="#contact" >our gpg</a> | 
+		<a href="/vendor/" >Vendor/Seller access</a> | 
+		<a href="#faq" >FaQ</a></p>
+      </div>
+
+    </div>
+
+
+
+
+
+ 
+ <div id="terms" class="pop-up">
+
+    <!-- The pop-up block -->
+    <div class="popBox">
+
+      <!-- If the content becomes larger than the pop-up this div will scroll the content -->
+      <div class="popScroll">
+        <h2>Terms</h2>
+        <p>You agree ......</p>
+		<p>..........</p>
+		<p>You will not .........</p>
+		<p>You will not ...... </p>
+      </div>
+
+      
+    </div>
+
+    <!-- This link is the light box -->
+    <a href="#links" class="lightbox">Back to links</a>
+  </div>
+   <div id="contact" class="pop-up">
+
+    <!-- The pop-up block -->
+
+      
+    </div>
+
+    <!-- This link is the light box -->
+    <a href="#links" class="lightbox">Back to links</a>
+  </div>
+  <div id="faq" class="pop-up">
+
+    <!-- The pop-up block -->
+    <div class="popBox">
+
+      <!-- If the content becomes larger than the pop-up this div will scroll the content -->
+      <div class="popScroll">
+        <h2>Frequently Asked Questions</h2>
+		  <p><span style="font-weight:bold;">how do i make a gpg key?</span> <br />Manage keys -> key -> generate key -> enter your username in the 'name' field</p>
+        <p><span style="font-weight:bold;">Do you provide ESCROW?</span> <br />no. we are trying to be effient, making database entries for escrow is a waste of bytes/storage</p>
+		   <p><span style="font-weight:bold;">vendor sent more than i paid for and is demanding more money?</span> <br />contact support immediatly.</p>
+		  <p><span style="font-weight:bold;">item not recieved?</span>fsdfgdfg</p>
+		<p><span style="font-weight:bold;">I got scammed?</span> <br />Contact Seller, if no response in 48 hours, leave negative feedback and contact support. when there is enough evidence we will look into it.</p>
+		<p><span style="font-weight:bold;">Im a seller and cant withdraw my litecoins?</span> <br />if it stays at 'processing' for 72+ hours please contact support.</p>
+		<p><span style="font-weight:bold;">blah blah blah</span> <br />i</p>
+		
+      </div>
+
+      
+    </div>
+
+    <!-- This link is the light box -->
+    <a href="#links" class="lightbox">Back to links</a>
+  </div>
+</body></html>
